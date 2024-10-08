@@ -124,6 +124,12 @@ let
       options.desc = "Delete buffer (force)";
     }
     {
+      mode = "n";
+      key = "<leader>bb";
+      action = "<cmd>e #<cr>";
+      options.desc = "Most recent buffer";
+    }
+    {
       mode = ["n"];
       key = "<leader>bp";
       action = "<cmd>bp<cr>";

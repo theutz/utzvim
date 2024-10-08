@@ -1,5 +1,5 @@
 {
-  plugins.vim-surround = {
+  plugins.ts-comments = {
     enable = true;
   };
 }

@@ -21,6 +21,12 @@
       nil-ls = {
         enable = true;
       };
+      jsonls = {
+        enable = true;
+      };
+      yamlls = {
+        enable = true;
+      };
     };
   };
 }
