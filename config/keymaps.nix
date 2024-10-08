@@ -1,5 +1,6 @@
 {lib, ...}: let
   inherit (lib) mapAttrsToList;
+  inherit (builtins) map elemAt;
 
   winKeyMapper = key: desc: {
     key = "<leader>w${key}";
@@ -27,9 +28,28 @@
     "x" = "Swap current with next";
     "|" = "Max out the width";
   };
+
+  leaderMapper = arg: let
+    key = elemAt arg 0;
+    cmd = elemAt arg 1;
+    desc = elemAt arg 2;
+  in {
+    mode = ["n"];
+    key = "<leader>${key}";
+    action = "<cmd>${cmd}<cr>";
+    options.desc = desc;
+  };
+  leaderCmds = [
+    ["bd" "bd" "Delete buffer"]
+    ["bD" "bd!" "Delete buffer (force)"]
+    ["bp" "bp" "Previous buffer"]
+    ["bn" "bn" "Next buffer"]
+  ];
+  leaderKeys = map leaderMapper leaderCmds;
 in {
   keymaps =
     (mapAttrsToList winKeyMapper winKeys)
+    ++ leaderKeys
     ++ [
       {
         mode = ["n"];

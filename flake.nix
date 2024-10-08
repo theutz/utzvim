@@ -6,6 +6,7 @@
     nixvim.url = "github:nix-community/nixvim";
     flake-parts.url = "github:hercules-ci/flake-parts";
     treefmt-nix.url = "github:numtide/treefmt-nix";
+    flake-root.url = "github:srid/flake-root";
   };
 
   outputs = {
@@ -16,6 +17,7 @@
   } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
+        inputs.flake-root.flakeModule
         inputs.treefmt-nix.flakeModule
       ];
 
@@ -54,8 +56,8 @@
           default = nvim;
         };
 
-        treefmt = {
-          projectRootFile = ./flake.nix;
+        treefmt.config = {
+          inherit (config.flake-root) projectRootFile;
           settings = {
             excludes = [".git" "*.log"];
           };
