@@ -8,7 +8,7 @@
     action = "<cmd>wincmd ${key}<cr>";
     options.desc = desc;
   };
-  winKeys = {
+  winCmds = {
     "+" = "Increase height";
     "-" = "Decrease height";
     "<" = "Decrease width";
@@ -28,6 +28,7 @@
     "x" = "Swap current with next";
     "|" = "Max out the width";
   };
+  winKeys = mapAttrsToList winKeyMapper winCmds;
 
   leaderMapper = arg: let
     key = elemAt arg 0;
@@ -48,7 +49,7 @@
   leaderKeys = map leaderMapper leaderCmds;
 in {
   keymaps =
-    (mapAttrsToList winKeyMapper winKeys)
+    winKeys
     ++ leaderKeys
     ++ [
       {
