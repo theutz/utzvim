@@ -5,6 +5,7 @@ in {
     enable = true;
     autoEnableSources = true;
     settings = {
+      preselect = "cmp.PreselectMode.None";
       sources = map (name: {inherit name;}) [
         "nvim_lsp"
         "path"
