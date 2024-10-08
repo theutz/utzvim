@@ -54,12 +54,22 @@
         packages = {
           # Lets you run `nix run .` to start nixvim
           default = nvim;
+          watch = pkgs.writeShellApplication {
+            name = "watch";
+            runtimeInputs = with pkgs; [watchexec];
+            text = ''
+              watchexec -- nix flake check
+            '';
+          };
         };
 
         treefmt.config = {
           inherit (config.flake-root) projectRootFile;
           settings = {
-            excludes = [".git" "*.log"];
+            excludes = [
+              ".git"
+              "*.log"
+            ];
           };
           programs.alejandra.enable = true;
         };
@@ -68,7 +78,7 @@
           default = pkgs.mkShell {
             nativeBuildInputs = [config.treefmt.build.wrapper];
             packages = with pkgs; [
-              gum
+              config.packages.watch
             ];
           };
         };

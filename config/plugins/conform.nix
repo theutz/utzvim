@@ -7,7 +7,11 @@
     enable = true;
     settings = {
       formatters_by_ft = {
-        bash = ["shellcheck" "shellharden" "shfmt"];
+        bash = [
+          "shellcheck"
+          "shellharden"
+          "shfmt"
+        ];
         nix = ["alejandra"];
         yaml = ["prettier"];
       };
@@ -19,7 +23,9 @@
         lsp_fallback = true;
       };
       formatters = {
-        alejandra = {command = lib.getExe pkgs.alejandra;};
+        alejandra = {
+          command = lib.getExe pkgs.alejandra;
+        };
       };
     };
   };
