@@ -1,0 +1,104 @@
+on_key: <Space>
+State(start): Mode(n:0) Node(<Space>) { keys = "<Space>" }
+  update Mode(n:1)
+  continue: <Space> Mode(n:1)
+  getchar
+  on_key: <Space>
+  got: <Space>
+  suspend: Mode(n:1)
+  Trigger(del) Mode(n:1) ' " g` g' z= <Space> ] g [ <C-W> z `
+  feedkeys: Mode(n:1) <Space><Space>
+on_key: <Space><Space>
+BufNew(14)
+BufNew(15)
+BufNew(16)
+BufNew(17)
+ModeChanged(n:nt)
+  new Mode(n:15)
+  Safe(true)
+ModeChanged(nt:t)
+  new Mode(t:15)
+  Safe(true)
+Trigger(add) Mode(n:15) ` ' " g` g' z= <Space> ] g [ <C-W> z
+Trigger(add) Mode(n:1) ` ' " g` g' z= <Space> ] g [ <C-W> z
+BufNew(18)
+on_key: w
+BufNew(19)
+on_key: h
+on_key: i
+on_key: c
+on_key: <CR>
+BufEnter(1)
+ModeChanged(t:n)
+  Unsafe(pending "^[")
+  suspend: Mode(n:1)
+  Trigger(del) Mode(n:1) ` ' " g` g' z= <Space> ] g [ <C-W> z
+BufNew(20)
+BufReadPost(20)
+BufEnter(20)
+  new Mode(t:20)
+ModeChanged(n:t)
+  cooldown
+ModeChanged(t:n)
+  new Mode(n:20)
+  cooldown
+Trigger(add) Mode(n:20) ` ' " g` g' z= <Space> ] g [ <C-W> z
+Trigger(add) Mode(n:1) ` ' " g` g' z= <Space> ] g [ <C-W> z
+on_key: j
+on_key: j
+on_key: j
+on_key: j
+on_key: j
+on_key: j
+on_key: j
+on_key: j
+on_key: j
+on_key: j
+on_key: j
+on_key: k
+on_key: k
+on_key: k
+on_key: k
+on_key: k
+on_key: k
+on_key: j
+on_key: d
+ModeChanged(n:no)
+  new Mode(o:20)
+  Unsafe(pending "d")
+  suspend: Mode(o:20)
+on_key: d
+ModeChanged(no:n)
+  cooldown
+Trigger(add) Mode(o:20) g [ ]
+on_key: <C-S>
+on_key: <Space>
+State(start): Mode(n:0) Node(<Space>) { keys = "<Space>" }
+  update Mode(n:20)
+  continue: <Space> Mode(n:20)
+  getchar
+  on_key: g
+  got: g
+  continue: <Space>g Mode(n:20)
+  getchar
+  on_key: g
+  got: g
+  suspend: Mode(n:20)
+  Trigger(del) Mode(n:20) ` ' g` z= <Space> ] g [ <C-W> z g' "
+  feedkeys: Mode(n:20) <Space>gg
+on_key: <Space>gg
+BufNew(21)
+BufEnter(21)
+  new Mode(n:21)
+BufNew(22)
+BufEnter(22)
+  new Mode(n:22)
+ModeChanged(n:nt)
+  Safe(true)
+ModeChanged(nt:t)
+  new Mode(t:22)
+  Safe(true)
+Trigger(add) Mode(n:20) ` ' " g` g' z= <Space> ] g [ <C-W> z
+Trigger(add) Mode(n:21) ` ' " g` g' z= <Space> ] g [ <C-W> z
+Trigger(add) Mode(n:22) ` ' " g` g' z= <Space> ] g [ <C-W> z
+on_key: a
