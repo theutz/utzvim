@@ -1,7 +1,4 @@
-{lib, ...}: let
-  inherit (lib) mapAttrsToList;
-  inherit (builtins) map elemAt;
-
+let
   winKeys = [
     {
       mode = ["n"];
