@@ -1,5 +1,10 @@
-{...}: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (builtins) map elemAt;
+  inherit (lib) mkIf;
 
   act = key: action: desc: {
     mode = ["n"];
@@ -7,12 +12,14 @@
     action = "<cmd>FzfLua ${action}<cr>";
     options = {inherit desc;};
   };
+
+  cfg = config.plugins.fzf-lua;
 in {
   plugins.fzf-lua = {
     enable = true;
   };
 
-  keymaps = map (def: act (elemAt def 0) (elemAt def 1) (elemAt def 2)) [
+  keymaps = mkIf cfg.enable (map (def: act (elemAt def 0) (elemAt def 1) (elemAt def 2)) [
     [" " "git_files" "Find files (current repo)"]
     ["'" "marks" "Marks"]
     ["," "buffers" "Buffers"]
@@ -32,5 +39,5 @@ in {
     ["st" "tabs" "Tabs"]
     ["sz" "builtin" "Fzf builtins"]
     [''"'' "registers" "Registers"]
-  ];
+  ]);
 }

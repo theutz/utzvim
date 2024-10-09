@@ -7,6 +7,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     treefmt-nix.url = "github:numtide/treefmt-nix";
     flake-root.url = "github:srid/flake-root";
+    yazi.url = "github:sxyazi/yazi";
   };
 
   outputs = {
@@ -32,6 +33,7 @@
         pkgs,
         system,
         config,
+        inputs',
         ...
       }: let
         nixvimLib = nixvim.lib.${system};
@@ -41,7 +43,7 @@
           module = import ./config; # import the module directly
           # You can use `extraSpecialArgs` to pass additional arguments to your module files
           extraSpecialArgs = {
-            # inherit (inputs) foo;
+            inherit (inputs') yazi;
           };
         };
         nvim = nixvim'.makeNixvimWithModule nixvimModule;

@@ -1,4 +1,11 @@
 {
+  lib,
+  config,
+  ...
+}: let
+  inherit (lib) mkIf;
+  cfg = config.plugins.oil;
+in {
   plugins.oil = {
     enable = true;
     settings = {
@@ -21,7 +28,7 @@
     };
   };
 
-  keymaps = [
+  keymaps = mkIf cfg.enable [
     {
       mode = ["n"];
       key = "<leader>e";

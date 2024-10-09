@@ -1,9 +1,8 @@
-let
-in {
+{
   plugins.auto-session = {
     enable = true;
-    autoSession = {
-      useGitBranch = true;
+    settings = {
+      use_git_branch = true;
     };
   };
 
