@@ -62,6 +62,12 @@
               watchexec -- nix flake check
             '';
           };
+          dogfood = pkgs.writeShellApplication {
+            name = "dogfood";
+            text = ''
+              while :; do nix run; done
+            '';
+          };
         };
 
         treefmt.config = {
@@ -77,10 +83,27 @@
 
         devShells = {
           default = pkgs.mkShell {
-            nativeBuildInputs = [config.treefmt.build.wrapper];
-            packages = with pkgs; [
-              config.packages.watch
+            nativeBuildInputs = [
+              config.treefmt.build.wrapper
             ];
+
+            packages = [
+              config.packages.watch
+              config.packages.dogfood
+              pkgs.gum
+            ];
+
+            shellHook = ''
+              gum format <<EOF
+                # Welcome
+
+                ## Commands
+
+                - \`watch\`: watch for changes and run the checks
+                - \`dogfood\`: run utzvim in a loop for rapid development
+              EOF
+              echo
+            '';
           };
         };
       };
