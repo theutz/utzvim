@@ -198,7 +198,7 @@ in {
     ++ tabKeys
     ++ [
       {
-        mode = ["n"];
+        mode = ["n" "i"];
         key = "<C-s>";
         action = "<cmd>w<cr>";
         options = {
