@@ -7,7 +7,6 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     treefmt-nix.url = "github:numtide/treefmt-nix";
     flake-root.url = "github:srid/flake-root";
-    yazi.url = "github:sxyazi/yazi";
   };
 
   outputs = {
