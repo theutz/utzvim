@@ -26,6 +26,15 @@
         alejandra = {
           command = lib.getExe pkgs.alejandra;
         };
+        shellcheck = {
+          command = lib.getExe pkgs.shellcheck;
+        };
+        shfmt = {
+          command = lib.getExe pkgs.shfmt;
+        };
+        shellharden = {
+          command = lib.getExe pkgs.shellharden;
+        };
       };
     };
   };
