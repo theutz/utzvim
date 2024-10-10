@@ -17,6 +17,15 @@
 in {
   plugins.fzf-lua = {
     enable = true;
+    profile = "fzf-native";
+    settings = {
+      keymap = {
+        fzf = {
+          "ctrl-d" = "preview-page-down";
+          "ctrl-u" = "preview-page-up";
+        };
+      };
+    };
   };
 
   keymaps = mkIf cfg.enable (map (def: act (elemAt def 0) (elemAt def 1) (elemAt def 2)) [
